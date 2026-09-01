@@ -159,4 +159,24 @@ public:
     {
         _Value = LowerAllString(_Value);
     }
+
+    static char  InvertLetterCase(char char1)
+    {
+        return isupper(char1) ? tolower(char1) : toupper(char1);
+    }
+
+    static string  InvertAllLettersCase(string S1)
+    {
+        for (short i = 0; i < S1.length(); i++)
+        {
+            S1[i] = InvertLetterCase(S1[i]);
+        }
+        return S1;
+    }
+
+    void  InvertAllLettersCase()
+    {
+        _Value = InvertAllLettersCase(_Value);
+    }
+
 };
