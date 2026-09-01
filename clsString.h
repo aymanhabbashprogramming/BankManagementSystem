@@ -451,4 +451,63 @@ public:
         _Value = ReverseWordsInString(_Value);
     }
 
+    static string ReplaceWord(string S1, string StringToReplace, string sRepalceTo, bool MatchCase = true)
+    {
+
+        vector<string> vString = Split(S1, " ");
+
+        for (string& s : vString)
+        {
+
+            if (MatchCase)
+            {
+                if (s == StringToReplace)
+                {
+                    s = sRepalceTo;
+                }
+
+            }
+            else
+            {
+                if (LowerAllString(s) == LowerAllString(StringToReplace))
+                {
+                    s = sRepalceTo;
+                }
+
+            }
+
+        }
+
+        return JoinString(vString, " ");
+    }
+
+    string ReplaceWord(string StringToReplace, string sRepalceTo)
+    {
+        return ReplaceWord(_Value, StringToReplace, sRepalceTo);
+    }
+
+    static string RemovePunctuations(string S1)
+    {
+
+        string S2 = "";
+
+        for (short i = 0; i < S1.length(); i++)
+        {
+            if (!ispunct(S1[i]))
+            {
+                S2 += S1[i];
+            }
+        }
+
+        return S2;
+
+    }
+
+    void RemovePunctuations()
+    {
+        _Value = RemovePunctuations(_Value);
+    }
+
+
+
 };
