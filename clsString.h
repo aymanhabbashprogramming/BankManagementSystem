@@ -97,4 +97,66 @@ public:
         return S1;
     }
 
+    void  UpperFirstLetterOfEachWord()
+    {
+        // no need to return value , this function will directly update the object value  
+        _Value = UpperFirstLetterOfEachWord(_Value);
+    }
+
+    static string  LowerFirstLetterOfEachWord(string S1)
+    {
+
+        bool isFirstLetter = true;
+
+        for (short i = 0; i < S1.length(); i++)
+        {
+
+            if (S1[i] != ' ' && isFirstLetter)
+            {
+                S1[i] = tolower(S1[i]);
+
+            }
+
+            isFirstLetter = (S1[i] == ' ' ? true : false);
+
+        }
+
+        return S1;
+    }
+
+    void  LowerFirstLetterOfEachWord()
+    {
+
+
+        // no need to return value , this function will directly update the object value  
+        _Value = LowerFirstLetterOfEachWord(_Value);
+    }
+
+    static string  UpperAllString(string S1)
+    {
+        for (short i = 0; i < S1.length(); i++)
+        {
+            S1[i] = toupper(S1[i]);
+        }
+        return S1;
+    }
+
+    void  UpperAllString()
+    {
+        _Value = UpperAllString(_Value);
+    }
+
+    static string  LowerAllString(string S1)
+    {
+        for (short i = 0; i < S1.length(); i++)
+        {
+            S1[i] = tolower(S1[i]);
+        }
+        return S1;
+    }
+
+    void  LowerAllString()
+    {
+        _Value = LowerAllString(_Value);
+    }
 };
