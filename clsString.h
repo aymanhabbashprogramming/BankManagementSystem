@@ -421,4 +421,34 @@ public:
 
     }
 
+    static string ReverseWordsInString(string S1)
+    {
+
+        vector<string> vString;
+        string S2 = "";
+
+        vString = Split(S1, " ");
+
+        // declare iterator
+        vector<string>::iterator iter = vString.end();
+
+        while (iter != vString.begin())
+        {
+
+            --iter;
+
+            S2 += *iter + " ";
+
+        }
+
+        S2 = S2.substr(0, S2.length() - 1); //remove last space.
+
+        return S2;
+    }
+
+    void ReverseWordsInString()
+    {
+        _Value = ReverseWordsInString(_Value);
+    }
+
 };
