@@ -304,5 +304,92 @@ public:
         return Counter;
     }
 
+    short  CountVowels()
+    {
+        return CountVowels(_Value);
+    }
+
+    static vector<string> Split(string S1, string Delim)
+    {
+
+        vector<string> vString;
+
+        short pos = 0;
+        string sWord; // define a string variable  
+
+        // use find() function to get the position of the delimiters  
+        while ((pos = S1.find(Delim)) != std::string::npos)
+        {
+            sWord = S1.substr(0, pos); // store the word   
+            // if (sWord != "")
+            // {
+            vString.push_back(sWord);
+            //}
+
+            S1.erase(0, pos + Delim.length());  /* erase() until positon and move to next word. */
+        }
+
+        if (S1 != "")
+        {
+            vString.push_back(S1); // it adds last word of the string.
+        }
+
+        return vString;
+
+    }
+
+    vector<string> Split(string Delim)
+    {
+        return Split(_Value, Delim);
+    }
+
+    static string TrimLeft(string S1)
+    {
+
+
+        for (short i = 0; i < S1.length(); i++)
+        {
+            if (S1[i] != ' ')
+            {
+                return S1.substr(i, S1.length() - i);
+            }
+        }
+        return "";
+    }
+
+    void TrimLeft()
+    {
+        _Value = TrimLeft(_Value);
+    }
+
+    static string TrimRight(string S1)
+    {
+
+
+        for (short i = S1.length() - 1; i >= 0; i--)
+        {
+            if (S1[i] != ' ')
+            {
+                return S1.substr(0, i + 1);
+            }
+        }
+        return "";
+    }
+
+    void TrimRight()
+    {
+        _Value = TrimRight(_Value);
+    }
+
+    static string Trim(string S1)
+    {
+        return (TrimLeft(TrimRight(S1)));
+
+    }
+
+    void Trim()
+    {
+        _Value = Trim(_Value);
+    }
 
 };
