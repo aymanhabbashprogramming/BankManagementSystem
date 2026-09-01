@@ -68,4 +68,46 @@ public:
         }
     }
 
+    static  string GenerateWord(enCharType CharType, short Length)
+
+    {
+        string Word;
+
+        for (int i = 1; i <= Length; i++)
+
+        {
+
+            Word = Word + GetRandomCharacter(CharType);
+
+        }
+        return Word;
+    }
+
+    static string  GenerateKey(enCharType CharType = CapitalLetter)
+    {
+
+        string Key = "";
+
+
+        Key = GenerateWord(CharType, 4) + "-";
+        Key = Key + GenerateWord(CharType, 4) + "-";
+        Key = Key + GenerateWord(CharType, 4) + "-";
+        Key = Key + GenerateWord(CharType, 4);
+
+
+        return Key;
+    }
+
+    static void GenerateKeys(short NumberOfKeys, enCharType CharType)
+    {
+
+        for (int i = 1; i <= NumberOfKeys; i++)
+
+        {
+            cout << "Key [" << i << "] : ";
+            cout << GenerateKey(CharType) << endl;
+        }
+
+    }
+
 };
