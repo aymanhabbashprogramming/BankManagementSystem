@@ -138,5 +138,18 @@ public:
 		return Number;
 	}
 
+	static bool IsValideDate(clsDate Date)
+	{
+		return	clsDate::IsValidDate(Date);
+	}
+
+	static string ReadString()
+	{
+		string  S1 = "";
+		// Usage of std::ws will extract allthe whitespace character
+		getline(cin >> ws, S1);
+		return S1;
+	}
+
 
 };
