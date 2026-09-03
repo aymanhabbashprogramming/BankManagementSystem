@@ -147,11 +147,6 @@ public:
 		return _GetEmptyClientObject();
 	}
 
-	bool IsClientExist(string AccountNumber)
-	{
-		return (_Mode == enMode::EmptyMode);
-	}
-
 	static bool IsClientExist(string AccountNumber)
 	{
 
