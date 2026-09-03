@@ -33,6 +33,8 @@ private:
 		return clsBankClient(enMode::EmptyMode, "", "", "", "", "", "", 0);
 	}
 
+
+
 public:
 	clsBankClient(enMode Mode, string FirstName, string LastName, string Email, string Phone,
 		string AccountNumber, string PinCode, float AccountBalance) :
@@ -117,6 +119,45 @@ public:
 		}
 
 		return _GetEmptyClientObject();
+	}
+
+	static clsBankClient Find(string AccountNumber, string PinCode)
+	{
+
+		fstream MyFile;
+		MyFile.open("Clients.txt", ios::in);//read Mode
+
+		if (MyFile.is_open())
+		{
+			string Line;
+			while (getline(MyFile, Line))
+			{
+				clsBankClient Client = _ConvertLinetoClientObject(Line);
+				if (Client.AccountNumber() == AccountNumber && Client.PinCode == PinCode)
+				{
+					MyFile.close();
+					return Client;
+				}
+
+			}
+
+			MyFile.close();
+
+		}
+		return _GetEmptyClientObject();
+	}
+
+	bool IsClientExist(string AccountNumber)
+	{
+		return (_Mode == enMode::EmptyMode);
+	}
+
+	static bool IsClientExist(string AccountNumber)
+	{
+
+		clsBankClient Client1 = clsBankClient::Find(AccountNumber);
+
+		return (!Client1.IsEmpty());
 	}
 
 
