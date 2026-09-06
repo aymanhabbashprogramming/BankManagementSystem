@@ -33,7 +33,83 @@ private:
 		return clsBankClient(enMode::EmptyMode, "", "", "", "", "", "", 0);
 	}
 
+	static string _ConverClientObjectToLine(clsBankClient Client, string Seperator = "#//#")
+	{
+		string stClientRecord = "";
+		stClientRecord += Client.FirstName + Seperator;
+		stClientRecord += Client.LastName + Seperator;
+		stClientRecord += Client.Email + Seperator;
+		stClientRecord += Client.Phone + Seperator;
+		stClientRecord += Client.AccountNumber() + Seperator;
+		stClientRecord += Client.PinCode + Seperator;
+		stClientRecord += to_string(Client.AccountBalance);
 
+		return stClientRecord;
+	}
+
+	static vector<clsBankClient> _LoadClientsDataFromFile()
+	{
+		vector<clsBankClient> vClients;
+		fstream MyFile;
+		MyFile.open("Clients.txt", ios::in);
+
+		if (MyFile.is_open())
+		{
+			string Line;
+			while (getline(MyFile, Line))
+			{
+				clsBankClient Client = _ConvertLinetoClientObject(Line);
+				vClients.push_back(Client);
+			}
+			MyFile.close();
+		}
+		return vClients;
+	}
+
+	static void _SaveCleintsDataToFile(vector<clsBankClient> vClients)
+	{
+		fstream MyFile;
+		MyFile.open("Clients.txt", ios::out);
+
+		string DataLine;
+		if (MyFile.is_open())
+		{
+			for (clsBankClient C : vClients)
+			{
+				DataLine = _ConverClientObjectToLine(C);
+				MyFile << DataLine << endl;
+			}
+			MyFile.close();
+		}
+	}
+
+	void _AddDataLineToFile(string stDataLine)
+	{
+		fstream MyFile;
+		MyFile.open("Clients.txt", ios::out | ios::app);
+
+		if (MyFile.is_open())
+		{
+			MyFile << stDataLine << endl;
+			MyFile.close();
+		}
+	}
+
+	void _Update() 
+	{
+		vector <clsBankClient> _vClients;
+		_vClients = _LoadClientsDataFromFile();
+
+		for (clsBankClient client : _vClients)
+		{
+			if (client.AccountNumber() == AccountNumber())
+			{
+				client = *this;
+				break;
+			}
+		}
+		_SaveCleintsDataToFile(_vClients);
+	}
 
 public:
 	clsBankClient(enMode Mode, string FirstName, string LastName, string Email, string Phone,
@@ -155,5 +231,19 @@ public:
 		return (!Client1.IsEmpty());
 	}
 
+	enum enSaveResults { svFaildEmptyObject = 0, svSucceeded = 1 };
+
+	enSaveResults Save()
+	{
+		switch (_Mode)
+		{
+		case enMode::EmptyMode:
+			return enSaveResults::svFaildEmptyObject;
+
+		case enMode::UpdateMode:
+			_Update();
+			return enSaveResults::svSucceeded;
+		}
+	}
 
 };
