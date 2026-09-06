@@ -11,7 +11,7 @@ class clsBankClient : public clsPerson
 {
 
 private:
-	enum enMode { EmptyMode = 0, UpdateMode = 1 };
+	enum enMode { EmptyMode = 0, UpdateMode = 1, AddNewMode = 2};
 	enMode _Mode;
 
 	string _AccountNumber;
@@ -111,6 +111,11 @@ private:
 		_SaveCleintsDataToFile(_vClients);
 	}
 
+	void _AddNew()
+	{
+		_AddDataLineToFile(_ConverClientObjectToLine(*this));
+	}
+
 public:
 	clsBankClient(enMode Mode, string FirstName, string LastName, string Email, string Phone,
 		string AccountNumber, string PinCode, float AccountBalance) :
@@ -125,6 +130,11 @@ public:
 	bool IsEmpty()
 	{
 		return (_Mode == enMode::EmptyMode);
+	}
+
+	static clsBankClient GetAddNewClientObject(string AccountNumber)
+	{
+		return clsBankClient(enMode::AddNewMode, "", "", "", "", AccountNumber, "", 0);
 	}
 
 	string AccountNumber()
@@ -231,7 +241,7 @@ public:
 		return (!Client1.IsEmpty());
 	}
 
-	enum enSaveResults { svFaildEmptyObject = 0, svSucceeded = 1 };
+	enum enSaveResults { svFaildEmptyObject = 0, svSucceeded = 1, svFaildAccountNumberExists = 2};
 
 	enSaveResults Save()
 	{
@@ -243,6 +253,21 @@ public:
 		case enMode::UpdateMode:
 			_Update();
 			return enSaveResults::svSucceeded;
+
+		case enMode::AddNewMode:
+
+			if (IsClientExist(_AccountNumber))
+			{
+				return enSaveResults::svFaildAccountNumberExists;
+			}
+
+			else
+			{
+				_AddNew();
+				_Mode = enMode::UpdateMode;
+				return enSaveResults::svSucceeded;
+			}
+			break;
 		}
 	}
 
