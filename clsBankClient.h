@@ -132,6 +132,11 @@ public:
 		_PinCode = PinCode;
 	}
 
+	static vector <clsBankClient> GetClientsList()
+	{
+		return _LoadClientsDataFromFile();
+	}
+
 	bool IsEmpty()
 	{
 		return (_Mode == enMode::EmptyMode);
