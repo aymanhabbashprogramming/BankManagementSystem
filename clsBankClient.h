@@ -100,12 +100,12 @@ private:
 		}
 	}
 
-	void _Update() 
+	void _Update()
 	{
 		vector <clsBankClient> _vClients;
 		_vClients = _LoadClientsDataFromFile();
 
-		for (clsBankClient client : _vClients)
+		for (clsBankClient& client : _vClients)
 		{
 			if (client.AccountNumber() == AccountNumber())
 			{
@@ -113,6 +113,7 @@ private:
 				break;
 			}
 		}
+
 		_SaveCleintsDataToFile(_vClients);
 	}
 
