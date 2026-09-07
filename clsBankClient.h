@@ -132,6 +132,20 @@ public:
 		_PinCode = PinCode;
 	}
 
+	static float GetTotalBalances()
+	{
+		vector <clsBankClient> vClients = clsBankClient::GetClientsList();
+
+		double TotalBalances = 0;
+
+		for (clsBankClient Client : vClients)
+		{
+			TotalBalances += Client.AccountBalance;
+		}
+
+		return TotalBalances;
+	}
+
 	static vector <clsBankClient> GetClientsList()
 	{
 		return _LoadClientsDataFromFile();
