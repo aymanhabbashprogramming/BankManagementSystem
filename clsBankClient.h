@@ -100,12 +100,12 @@ private:
 		}
 	}
 
-	void _Update() 
+	void _Update()
 	{
 		vector <clsBankClient> _vClients;
 		_vClients = _LoadClientsDataFromFile();
 
-		for (clsBankClient client : _vClients)
+		for (clsBankClient& client : _vClients)
 		{
 			if (client.AccountNumber() == AccountNumber())
 			{
@@ -113,6 +113,7 @@ private:
 				break;
 			}
 		}
+
 		_SaveCleintsDataToFile(_vClients);
 	}
 
@@ -130,6 +131,20 @@ public:
 		_AccountNumber = AccountNumber;
 		_AccountBalance = AccountBalance;
 		_PinCode = PinCode;
+	}
+
+	static float GetTotalBalances()
+	{
+		vector <clsBankClient> vClients = clsBankClient::GetClientsList();
+
+		double TotalBalances = 0;
+
+		for (clsBankClient Client : vClients)
+		{
+			TotalBalances += Client.AccountBalance;
+		}
+
+		return TotalBalances;
 	}
 
 	static vector <clsBankClient> GetClientsList()
