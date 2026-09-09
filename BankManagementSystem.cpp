@@ -5,6 +5,6 @@ int main()
 
 {
     clsMainScreen::ShowMainMenue();
-    system("pause>0");
+    system("pause");
     return 0;
 }
