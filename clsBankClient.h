@@ -133,7 +133,7 @@ public:
 		_PinCode = PinCode;
 	}
 
-	static float GetTotalBalances()
+	static double GetTotalBalances()
 	{
 		vector <clsBankClient> vClients = clsBankClient::GetClientsList();
 
@@ -310,6 +310,21 @@ public:
 	{
 		_AccountBalance += Amount;
 		Save();
+	}
+
+	bool Withdraw(double Amount)
+	{
+		if (Amount > _AccountBalance)
+		{
+			return false;
+		}
+		else
+		{
+			_AccountBalance -= Amount;
+			Save();
+			return true;
+		}
+
 	}
 
 };
