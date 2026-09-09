@@ -24,7 +24,7 @@ private:
     static void _GoBackToManageUsersMenue()
     {
         cout << "\n\nPress any key to go back to Manage Users Menue...";
-        system("pause>0");
+        system("pause");
         ShowManageUsersMenue();
     }
 
