@@ -348,4 +348,19 @@ public:
         return _LoadUsersDataFromFile();
     }
 
+    bool CheckAccessPermission(enPermissions ScreenPermissionValue)
+    {
+        if (this->Permissions == enPermissions::eAll)
+        {
+            return true;
+        }
+
+        if ((ScreenPermissionValue & this->Permissions) == ScreenPermissionValue)
+        {
+            return true;
+        }
+
+        return false;
+    }
+
 };
