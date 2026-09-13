@@ -6,8 +6,11 @@ int main()
 {
     while (true)
     {
-    clsLoginScreen::ShowLoginScreen();
 
+        if (clsLoginScreen::ShowLoginScreen() == false)
+        {
+            break;
+        }
     }
     return 0;
 }
