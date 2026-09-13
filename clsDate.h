@@ -107,7 +107,6 @@ public:
 
 	static string GetSystemDateTimeString()
 	{
-		//system datetime string
 		time_t t = time(0);
 		tm* now = localtime(&t);
 
