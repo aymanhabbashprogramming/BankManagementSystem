@@ -4,13 +4,18 @@
 int main()
 
 {
-    while (true)
+   /* while (true)
     {
 
         if (clsLoginScreen::ShowLoginScreen() == false)
         {
             break;
         }
-    }
+    }*/
+
+
+    fstream MyFile;
+    MyFile.open("Currencies.txt", ios::out | ios::app);
+    MyFile.close();
     return 0;
 }
