@@ -13,6 +13,7 @@
 #include "clsLoginScreen.h"
 #include "Global.h"
 #include "clsLoginRegisterScreen.h"
+#include "clsCurrencyExchangeMainScreen.h"
 using namespace std;
 
 class clsMainScreen :protected clsScreen
