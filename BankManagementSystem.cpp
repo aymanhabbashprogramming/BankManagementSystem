@@ -4,14 +4,14 @@
 int main()
 
 {
-   /* while (true)
+    while (true)
     {
 
         if (clsLoginScreen::ShowLoginScreen() == false)
         {
             break;
         }
-    }*/
+    }
 
 
     return 0;
