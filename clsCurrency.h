@@ -117,7 +117,7 @@ private:
     {
         return clsCurrency(enMode::EmptyMode, "", "", "", 0);
     }
-
+public:
     clsCurrency(enMode Mode, string Country, string CurrencyCode, string CurrencyName, float Rate)
     {
         _Mode = Mode;
