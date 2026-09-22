@@ -24,7 +24,7 @@ private:
     static void _GoBackToCurrenciesMenue()
     {
         cout << "\n\nPress any key to go back to Currencies Menue...";
-        system("pause>0");
+        system("pause");
         ShowCurrenciesMenue();
     }
 
